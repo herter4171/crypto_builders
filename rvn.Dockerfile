@@ -1,21 +1,21 @@
 FROM btc_base
 
-ARG CHECKOUT=v0.18.1
+ARG CHECKOUT=v2.5.1
 
 # Need root to install packages
 USER root
 WORKDIR /root
 
-# Clone and build Bitcoin source
-RUN git clone -v https://github.com/bitcoin/bitcoin.git ; \
-cd bitcoin ; \
+# Clone and build Ravencoin source
+RUN git clone -v https://github.com/RavenProject/Ravencoin.git ; \
+cd Ravencoin ; \
 git checkout ${CHECKOUT} ; \
 ./autogen.sh ; \
 ./configure ; \
 make -j $(grep -c ^processor /proc/cpuinfo) ; \
 make install ; \
 cd .. ; \
-rm -rf bitcoin
+rm -rf Ravencoin
 
 # Revert to user dev
 USER dev
