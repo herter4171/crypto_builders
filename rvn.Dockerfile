@@ -1,4 +1,5 @@
-FROM btc_base
+ARG BASE_IMG=btc_base
+FROM ${BASE_IMG}
 
 ARG CHECKOUT=v2.5.1
 
